@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration>
+    <Properties>
+        <Property name="pattern">%d{yyyy-MM-dd HH:mm:ss} %-1p : %msg%n</Property>
+        <!-- Change file Paths for your machine or docker instance
+        <Property name="baseDir">/opt/tomcat/logs</Property>
+         -->
+    </Properties>
+
+    <Appenders>
+        <Console name="Console"> <!-- target="SYSTEM_OUT" -->
+            <PatternLayout pattern="${pattern}" />
+        </Console>
+        <File name="File" fileName="kinesis-adapter.log" immediateFlush="false" append="false">
+            <PatternLayout pattern="${pattern}" />
+        </File>
+    </Appenders>
+
+    <Loggers>
+        <Logger name="org.apache.storm" level="ERROR" />
+        <Logger name="org.apache.zookeeper" level="ERROR" />
+        <Logger name="org.springframework" level="ERROR" />
+        <Logger name="com.travelport.storm.adapter" level="DEBUG" />
+
+        <Root level="INFO">
+            <AppenderRef ref="Console" /> 
+            <!-- <AppenderRef ref="File" />-->
+        </Root>
+    </Loggers>
+</Configuration>
